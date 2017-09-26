@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="Ui.Views.StoresListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ui.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="700"
+             xmlns:ViewModels="clr-namespace:Logic.ViewModel;assembly=Logic"
+             xmlns:Models="clr-namespace:Logic;assembly=Logic"
+             d:DataContext="{d:DesignInstance Type=ViewModels:StoresListViewModel,IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--Button Icons-->
+            <materialDesign:PackIcon x:Key="starIcon" Kind="StarCircle"/>
+            <materialDesign:PackIcon x:Key="deleteIcon" Kind="Delete"/>
+            <materialDesign:PackIcon x:Key="editIcon" Kind="Pencil"/>
+            <materialDesign:PackIcon x:Key="saveIcon" Kind="Floppy"/>
+
+            <!--datatemplate to a store-->
+            <DataTemplate x:Key="StoreTemplate" DataType="Models:Store">
+
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid  HorizontalAlignment="Stretch" Grid.Row="0" >
+                        <Grid.Background>
+                            <SolidColorBrush Color="Azure" Opacity="0.2"/>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="180"/>
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="image" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="80"  Grid.Column="0"
+                                Source="pack://application:,,,/Resources/defaultUser.png"/>
+                        <TextBlock Text="{Binding itemName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" />
+                        <TextBlock Text="{Binding itemStockTotal}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" />
+
+                        <Grid Grid.Column="3" Margin=" 2 3 4 2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Name="deleteButton" Grid.Column="0" Grid.Row="0" Width="55" 
+                                    Content="{StaticResource deleteIcon}">
+                            </Button>
+                            <Button Name="showButton" Grid.Column="1" Grid.Row="0" Width="55" 
+                                    Content="{StaticResource starIcon}">
+                            </Button>
+                            <Button Name="editButton" Grid.Column="2" Grid.Row="0" Width="55"
+                                    Content="{StaticResource editIcon}">
+                            </Button>
+                            <Button Name="bouttonStock" Content="Afficher le Stock"  Grid.Column="0" Grid.Row="1"
+                                    Grid.ColumnSpan="3" Width="175"/>
+                        </Grid>
+
+                    </Grid>
+
+                    <ItemsControl Name="subItemListView" ItemsSource="{Binding subItems}" Visibility="Collapsed" Grid.Row="1"  
+                                  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                  Margin="25 15 0 0"  ScrollViewer.CanContentScroll="False">
+
+                    </ItemsControl>
+                </Grid>
+            </DataTemplate>
+
+            <!--datatemplate to display the sub items of a store witch are the available stock for each product-->
+            <DataTemplate x:Key="SubItemTemplate" DataType="Models:Stock">
+                <DataTemplate.Resources>
+                </DataTemplate.Resources>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Name="img1" Source="pack://application:,,,/Resources/defaultProduct.jpg" HorizontalAlignment="Center"  Height="70" Width="70" VerticalAlignment="Center"  Grid.Column="0"/>
+                    <TextBlock Name="stockTextBlock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="F1+" Grid.Column="1"/>
+                    <TextBlock Name="txtBlock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="6" Grid.Column="2"/>
+                    <TextBox Name="txtBox" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" 
+                 Text="6" Grid.Column="2"/>
+                    <Button Name="editButton" Grid.Column="3" Content="{StaticResource editIcon}" Margin=" 9 5 9 5"/>
+                    <Button Name="saveButton" Grid.Column="3" Content="{StaticResource saveIcon}" Visibility="Collapsed" Margin=" 9 5 9 5" />
+                    <Grid.Triggers>
+                        <!--When Pressing the edit Button : 1 - diplay the save button and the textblock for edit,
+                                                            2 - hide the edit button and the textblock
+                        -->
+                        <EventTrigger RoutedEvent="Button.Click" SourceName="editButton">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBox" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBlock" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="saveButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="editButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.Click" SourceName="saveButton">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBox" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBlock" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="saveButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="editButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Grid.Triggers>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <TextBlock>StoresListView</TextBlock>
+        <ContentPresenter ContentTemplate="{StaticResource SubItemTemplate}"/>
+        <ContentPresenter ContentTemplate="{StaticResource StoreTemplate}"/>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Ui.Resources"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Main Menu -->
+    <system:String x:Key="Main_Menu">Main Menu</system:String>
+    <system:String x:Key="Home">Home</system:String>
+    <system:String x:Key="Setting">Setting</system:String>
+    <system:String x:Key="About">About</system:String>
+    <system:String x:Key="Stores">Stores</system:String>
+    <system:String x:Key="Display_Stores">Display Stores</system:String>
+    <system:String x:Key="Add_Store">Add Store</system:String>
+    <system:String x:Key="Products">Products</system:String>
+    <system:String x:Key="Display_Products">Display Products</system:String>
+    <system:String x:Key="Add_Product">Add Product</system:String>
+    <system:String x:Key="Purchase">Purchase</system:String>
+    <system:String x:Key="Purchase_History">Purchase History</system:String>
+    <system:String x:Key="New_Purchase">New Purchase</system:String>
+    <system:String x:Key="Sales">Sales</system:String>
+    <system:String x:Key="Sales_History">Sales History</system:String>
+    <system:String x:Key="New_Sale">New Sale</system:String>
+    <system:String x:Key="Reports">Reports</system:String>
+    <system:String x:Key="Daily_Report">Daily Report</system:String>
+    <system:String x:Key="Weekly_Report">Weekly Report</system:String>
+    <system:String x:Key="Monthly_Report">Monthly Report</system:String>
+
+
+
+</ResourceDictionary>

@@ -1,0 +1,195 @@
+﻿<Window x:Class="Ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModels="clr-namespace:Logic.ViewModel;assembly=Logic"
+        xmlns:Views="clr-namespace:Ui.Views"
+        xmlns:local="clr-namespace:Ui"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Height="600" Width="1050" MinWidth="850" MinHeight="600"
+        Title="Simpe Inventory Manager">
+
+    <Window.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}" />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- DataTemplates to bind Views to ViewModels-->
+            <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
+                <Views:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:AboutViewModel}">
+                <Views:AboutView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:AddProductViewModel}">
+                <Views:AddProductView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:AddStoreViewModel}">
+                <Views:AddStoreView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:DailyReportViewModel}">
+                <Views:DailyReportView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:MonthlyReportViewModel}">
+                <Views:MonthlyReportView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:NewPurchaseViewModel}">
+                <Views:NewPurchaseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:NewSaleViewModel}">
+                <Views:NewSaleView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:ProductListViewModel}">
+                <Views:ProductsListView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:PurchaseHistoryViewModel}">
+                <Views:PurchaseHistoryView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:SalesHistoryViewModel}">
+                <Views:SaleHistoryView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:SettingViewModel}">
+                <Views:SettingView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:StoresListViewModel}">
+                <Views:StoresListView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:WeeklyReportViewModel}">
+                <Views:WeeklyReportView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Left" BorderThickness="2" Margin="0,0,20,0" >
+
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+
+            <MenuItem Header="{StaticResource Main_Menu}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Star"/>
+                </MenuItem.Icon>
+                <MenuItem Header="{StaticResource Home}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Home, Source={StaticResource Locator}}"  >
+                    <!-- CommandParameter="{Binding  Home, Source={StaticResource Locator}}" -->
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="HomeModern"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource Setting}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Setting, Source={StaticResource Locator}}" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Settings"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource About}" Command="{Binding changeViewCommand}" CommandParameter="{Binding About, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Copyright"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="{StaticResource Stores}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Account"/>
+                </MenuItem.Icon>
+
+                <MenuItem Header="{StaticResource Display_Stores}" Command="{Binding changeViewCommand}" CommandParameter="{Binding StoresList, Source={StaticResource Locator}}" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Account"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource Add_Store}" Command="{Binding changeViewCommand}" CommandParameter="{Binding AddStore, Source={StaticResource Locator}}"  >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Plus" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Products}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Cellphone"/>
+                </MenuItem.Icon>
+                <MenuItem Header="{StaticResource Display_Products}" Command="{Binding changeViewCommand}" CommandParameter="{Binding ProductList, Source={StaticResource Locator}}" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Cellphone"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource Add_Product}" Command="{Binding changeViewCommand}" CommandParameter="{Binding AddProduct, Source={StaticResource Locator}}" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Plus"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Purchase}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Dropbox"/>
+                </MenuItem.Icon>
+                <MenuItem Header="{StaticResource Purchase_History}" Command="{Binding changeViewCommand}" CommandParameter="{Binding PurchaseHistory, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Dropbox"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource New_Purchase}" Command="{Binding changeViewCommand}" CommandParameter="{Binding NewPurchase, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Plus"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Sales}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Coin"/>
+                </MenuItem.Icon>
+                <MenuItem Header="{StaticResource Sales_History}" Command="{Binding changeViewCommand}" CommandParameter="{Binding SalesHistory, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Coin"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource New_Sale}" Command="{Binding changeViewCommand}" CommandParameter="{Binding NewSale, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Plus"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Reports}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="NoteText"/>
+                </MenuItem.Icon>
+                <MenuItem Header="{StaticResource Daily_Report}" Command="{Binding changeViewCommand}" CommandParameter="{Binding DailyReport, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="CalendarToday"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource Weekly_Report}" Command="{Binding changeViewCommand}" CommandParameter="{Binding WeeklyReport, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ViewWeek"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource Monthly_Report}" Command="{Binding changeViewCommand}" CommandParameter="{Binding MonthlyReport, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="CalendarMultiple"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+
+        </Menu>
+
+
+        <!-- this Content control will change the displayed view according to the SelectedViewModel property in the MainViewModel -->
+
+        <ContentControl Content="{Binding SelectedViewModel}"/>
+
+    </DockPanel>
+</Window>
