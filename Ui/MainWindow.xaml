@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ViewModels="clr-namespace:Logic.ViewModel;assembly=Logic"
+        xmlns:ViewModels="clr-namespace:Logic.ViewModels;assembly=Logic"
         xmlns:Views="clr-namespace:Ui.Views"
         xmlns:local="clr-namespace:Ui"
         mc:Ignorable="d"
@@ -34,8 +34,11 @@
             <DataTemplate DataType="{x:Type ViewModels:AddProductViewModel}">
                 <Views:AddProductView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type ViewModels:AddStoreViewModel}">
-                <Views:AddStoreView/>
+            <DataTemplate DataType="{x:Type ViewModels:EditStoreViewModel}">
+                <Views:EditStoreView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:StoreDetailViewModel}">
+                <Views:StoreDetailView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type ViewModels:DailyReportViewModel}">
                 <Views:DailyReportView/>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Ui.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:ViewModels="clr-namespace:Logic.ViewModel;assembly=Logic"
+             xmlns:ViewModels="clr-namespace:Logic.ViewModels;assembly=Logic"
              d:DataContext="{d:DesignInstance Type=ViewModels:AboutViewModel,IsDesignTimeCreatable=True}">
     
 

@@ -25,6 +25,20 @@
     <system:String x:Key="Weekly_Report">Weekly Report</system:String>
     <system:String x:Key="Monthly_Report">Monthly Report</system:String>
 
+    <!-- Displaly stores/products-->
+    <system:String x:Key="Display_stock">Display stock</system:String>
+    
+    <!-- Display store Detail-->
+    <system:String x:Key="picture">Picture</system:String>
+    <system:String x:Key="storeName">Store's name</system:String>
+    <system:String x:Key="ownerfirstName">Owner's first name</system:String>
+    <system:String x:Key="OwnerLastName">Owner's last name</system:String>
+    <system:String x:Key="phoneNumber">Phone number</system:String>
+    <system:String x:Key="extraInfo">Extra information</system:String>
+    <system:String x:Key="back">Back</system:String>
 
+    <!-- Add store-->
+
+    <system:String x:Key="SaveStore">Save store</system:String>
 
 </ResourceDictionary>
