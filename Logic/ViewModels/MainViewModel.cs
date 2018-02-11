@@ -45,6 +45,10 @@ namespace Logic.ViewModels
             MessengerInstance.Register<DisplayStoreDetailMessage> (this, OnDisplayStoreDetailMessage);
             MessengerInstance.Register<DisplayStoreListMessage>(this, OnDisplayStoreListMessage);
             MessengerInstance.Register<EditStoreMessage>(this, OnEditStoreMessage);
+
+            MessengerInstance.Register<DisplayProductDetailMessage>(this, OnDisplayProductDetailMessage);
+            MessengerInstance.Register<DisplayProductListMessage>(this, OnDisplayProductListMessage);
+            MessengerInstance.Register<EditProductMessage>(this, OnEditProductMessage);
         }
         public void OnDisplayStoreDetailMessage(DisplayStoreDetailMessage msg)
         {
@@ -63,5 +67,21 @@ namespace Logic.ViewModels
             SelectedViewModel = vm;
         }
 
+        public void OnDisplayProductDetailMessage(DisplayProductDetailMessage msg)
+        {
+            var vm = locator.ProductDetail;
+            vm.product = msg.product;
+            SelectedViewModel = vm;
+        }
+        public void OnDisplayProductListMessage(DisplayProductListMessage msg)
+        {
+            SelectedViewModel = locator.ProductList;
+        }
+        public void OnEditProductMessage(EditProductMessage msg)
+        {
+            var vm = locator.AddProduct;
+            vm.ProductToEdit = msg.product;
+            SelectedViewModel = vm;
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace Logic.ViewModels.Messages
 {
     public class DisplayStoreDetailMessage
     {
-        public Store store;
+        public Store store { get; set; }
 
         public DisplayStoreDetailMessage(Store s)
         {

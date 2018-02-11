@@ -8,11 +8,11 @@ using Ui.Views.Converters;
 namespace Ui.Views
 {
     /// <summary>
-    /// Interaction logic for AddStoreView.xaml
+    /// Interaction logic for AddProductView.xaml
     /// </summary>
-    public partial class EditStoreView : UserControl
+    public partial class EditProductView : UserControl
     {
-        public EditStoreView()
+        public EditProductView()
         {
             InitializeComponent();
         }
@@ -27,16 +27,16 @@ namespace Ui.Views
                 string[] fileNames = openFileDialog1.FileNames;
                 Bitmap img = new Bitmap(fileNames[0]);
 
-                if (DataContext != null && DataContext is EditStoreViewModel)
+                if (DataContext != null && DataContext is EditProductViewModel)
                 {
-                    EditStoreViewModel vm = (EditStoreViewModel)DataContext;
-                    vm.FormStore.picture = NullToStoreImageConverter.ImageToByte(img);
+                    EditProductViewModel vm = (EditProductViewModel)DataContext;
+                    vm.FormProduct.picture = NullToProductImageConverter.ImageToByte(img);
                     imageText.Text = "Cliquez pour modifier la photo";
                 }
 
             }
         }
-        
+
 
         private void bordurePhoto_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {

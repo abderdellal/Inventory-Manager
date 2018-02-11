@@ -1,8 +1,11 @@
-﻿using Logic.Core.Repositories;
-using Logic.Core.Domain;
-using System.Data.Entity;
+﻿using Logic.Core.Domain;
+using Logic.Core.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Data.Entity;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Logic.Persistence.Repositories
 {
@@ -14,7 +17,15 @@ namespace Logic.Persistence.Repositories
 
         public IEnumerable<Product> GetProductsWithStockPerStore()
         {
-            throw new NotImplementedException();
+            return InventoryManagerEntities.Products.Include(p => p.Stocks.Select(st => st.Store)).ToList();
+        }
+
+        public void deleteProductOnCascade(Product p)
+        {
+            InventoryManagerEntities.Purchases.RemoveRange(p.Purchases);
+            InventoryManagerEntities.Sales.RemoveRange(p.Sales);
+            InventoryManagerEntities.Stocks.RemoveRange(p.Stocks);
+            InventoryManagerEntities.Products.Remove(p);
         }
 
         public InventoryManagerEntities InventoryManagerEntities

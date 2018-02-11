@@ -9,7 +9,7 @@
              d:DesignHeight="800" d:DesignWidth="800"
              xmlns:ViewModels="clr-namespace:Logic.ViewModels;assembly=Logic"
              xmlns:Models="clr-namespace:Logic.Core.Domain;assembly=Logic"
-             d:DataContext="{Binding Source={StaticResource Locator}, Path=EditStore}"
+             d:DataContext="{Binding Source={StaticResource Locator}, Path=AddStore}"
              Name="EditStoreUserControl">
 
 
@@ -51,7 +51,6 @@
             <TextBox Text="{Binding Path=FormStore.extraInformation}" TextWrapping="Wrap"  AcceptsReturn="True" Height="100"  Width="300" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,70,30,50" Background="Transparent"/>
 
             <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="6">
-                <TextBlock Text="{Binding formulaireValide, Mode=OneWay}" FontSize="12" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0,15,0,10"/>
 
                 <Button  Content="{StaticResource SaveStore}" 
                          Command="{Binding SaveStoreCommand}"

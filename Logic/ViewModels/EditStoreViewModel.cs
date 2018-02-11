@@ -2,6 +2,8 @@
 using GalaSoft.MvvmLight.Command;
 using Logic.Core;
 using Logic.Core.Domain;
+using Logic.ViewModels.Messages;
+using System.Collections.Generic;
 
 namespace Logic.ViewModels
 {
@@ -17,12 +19,16 @@ namespace Logic.ViewModels
 
         public RelayCommand SaveStoreCommand { get; set; }
 
-        //the store that is displayed on the form
+        /// <summary>
+        /// the store that is displayed on the form
+        /// </summary>
         public Store FormStore { get; set; }
 
         private Store _store;
-        //this is set from outside the class to specify the store we're editing
-        //if this is null then we are adding a new store
+        /// <summary>
+        /// this is set from outside the class to specify the store we're editing
+        /// if this is null then we are adding a new store
+        /// </summary>
         public Store storeToEdit
         {
             get
@@ -60,8 +66,14 @@ namespace Logic.ViewModels
                     _store = new Store();
                     MessengerInstance.Send(new Messages.StoreAddedMessage(_store));
                     _context.Stores.Add(storeToEdit);
+                    IEnumerable<Product> products = _context.Products.GetAll();
+                    foreach (var prdct in products)
+                    {
+                        Stock stk = new Stock() { amount = 0, Store = _store, Product = prdct };
+                        _context.Stocks.Add(stk);
+                    }
                 }
-                 
+                
                 storeToEdit.storeName = FormStore.storeName;
                 storeToEdit.picture = FormStore.picture;
                 storeToEdit.firstName = FormStore.firstName;
@@ -72,6 +84,7 @@ namespace Logic.ViewModels
                 _context.Complete();
                 _store = null;
                 resetForm();
+                MessengerInstance.Send(new DisplayStoreListMessage());
             }
         }
 

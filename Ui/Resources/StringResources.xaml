@@ -38,7 +38,14 @@
     <system:String x:Key="back">Back</system:String>
 
     <!-- Add store-->
+    <system:String x:Key="SaveStore">Save the store</system:String>
 
-    <system:String x:Key="SaveStore">Save store</system:String>
+    <!-- Display Product Detail-->
+    <system:String x:Key="reference">Product Name</system:String>
+    <system:String x:Key="sellingPrice">Selling price</system:String>
+    <system:String x:Key="purchasePrice">purchase price</system:String>
+
+    <!-- Add Product-->
+    <system:String x:Key="SaveProduct">Save the product</system:String>
 
 </ResourceDictionary>

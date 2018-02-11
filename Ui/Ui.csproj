@@ -106,8 +106,8 @@
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddProductView.xaml.cs">
-      <DependentUpon>AddProductView.xaml</DependentUpon>
+    <Compile Include="Views\EditProductView.xaml.cs">
+      <DependentUpon>EditProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Converters\BaseConverter.cs" />
     <Compile Include="Views\Converters\NullToProductImageConverter.cs" />
@@ -129,6 +129,9 @@
     </Compile>
     <Compile Include="Views\NewSaleView.xaml.cs">
       <DependentUpon>NewSaleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductDetailView.xaml.cs">
+      <DependentUpon>ProductDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductsListView.xaml.cs">
       <DependentUpon>ProductsListView.xaml</DependentUpon>
@@ -174,7 +177,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddProductView.xaml">
+    <Page Include="Views\EditProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewSaleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

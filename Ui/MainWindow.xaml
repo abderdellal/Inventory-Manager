@@ -31,8 +31,11 @@
             <DataTemplate DataType="{x:Type ViewModels:AboutViewModel}">
                 <Views:AboutView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type ViewModels:AddProductViewModel}">
-                <Views:AddProductView/>
+            <DataTemplate DataType="{x:Type ViewModels:EditProductViewModel}">
+                <Views:EditProductView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:ProductDetailViewModel}">
+                <Views:ProductDetailView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type ViewModels:EditStoreViewModel}">
                 <Views:EditStoreView/>

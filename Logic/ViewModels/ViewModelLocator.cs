@@ -32,22 +32,24 @@ namespace Logic.ViewModels
                 _context = new UnitOfWork(new InventoryManagerEntities());
                 SimpleIoc.Default.Register<MainViewModel>(() => new MainViewModel(this));
                 SimpleIoc.Default.Register<StoresListViewModel>(() => new StoresListViewModel(_context));
+                SimpleIoc.Default.Register<ProductListViewModel>(() => new ProductListViewModel(_context));
                 SimpleIoc.Default.Register<EditStoreViewModel>(() => new EditStoreViewModel(_context));
+                SimpleIoc.Default.Register<EditProductViewModel>(() => new EditProductViewModel(_context));
             }
 
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
-            SimpleIoc.Default.Register<AddProductViewModel>();
             SimpleIoc.Default.Register<DailyReportViewModel>();
             SimpleIoc.Default.Register<MonthlyReportViewModel>();
             SimpleIoc.Default.Register<NewPurchaseViewModel>();
             SimpleIoc.Default.Register<NewSaleViewModel>();
-            SimpleIoc.Default.Register<ProductListViewModel>();
             SimpleIoc.Default.Register<PurchaseHistoryViewModel>();
             SimpleIoc.Default.Register<SalesHistoryViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
             SimpleIoc.Default.Register<WeeklyReportViewModel>();
             SimpleIoc.Default.Register<StoreDetailViewModel>();
+            SimpleIoc.Default.Register<ProductDetailViewModel>();
+
         }
 
         public MainViewModel Main
@@ -75,11 +77,11 @@ namespace Logic.ViewModels
             }
         }
 
-        public AddProductViewModel AddProduct
+        public EditProductViewModel AddProduct
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<AddProductViewModel>();
+                return ServiceLocator.Current.GetInstance<EditProductViewModel>();
             }
         }
 
@@ -125,7 +127,11 @@ namespace Logic.ViewModels
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<ProductListViewModel>();
+                if (ViewModelBase.IsInDesignModeStatic)
+                    return new ProductListViewModel(null);
+
+                else
+                    return ServiceLocator.Current.GetInstance<ProductListViewModel>();
             }
         }
         public PurchaseHistoryViewModel PurchaseHistory
@@ -185,6 +191,23 @@ namespace Logic.ViewModels
             }
         }
 
+        public ProductDetailViewModel ProductDetail
+        {
+            get
+            {
+                ProductDetailViewModel vm;
+                if (ViewModelBase.IsInDesignModeStatic)
+                {
+                    vm = new ProductDetailViewModel();
+                    vm.product = _designContext.Products[0];
+                }
+                else
+                {
+                    vm = ServiceLocator.Current.GetInstance<ProductDetailViewModel>();
+                }
+                return vm;
+            }
+        }
         //public static void Cleanup()
         //{
         //    // TODO Clear the ViewModels

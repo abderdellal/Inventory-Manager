@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Ui.Views.EditProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ui.Views"
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="800" d:DesignWidth="800"
+             xmlns:ViewModels="clr-namespace:Logic.ViewModels;assembly=Logic"
+             xmlns:Models="clr-namespace:Logic.Core.Domain;assembly=Logic"
+             d:DataContext="{Binding Source={StaticResource Locator}, Path=AddProduct}"
+             Name="EditProductUserControl">
+    
+    
+    <ScrollViewer >
+        <Grid HorizontalAlignment="Center" Margin="0,30,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{StaticResource picture}" Grid.Column="0" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource reference}" Grid.Column="0" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource purchasePrice}" Grid.Column="0" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource sellingPrice}" Grid.Column="0" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource extraInfo}" Grid.Column="0" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+
+            <Border x:Name="bordurePhoto" MouseLeave="bordurePhoto_MouseLeave" MouseEnter="Border_MouseEnter" MouseUp="Border_MouseUp" BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" >
+                <Grid>
+                    <Image x:Name="userImage" Width="230" Height="230" Source="{Binding Path=FormProduct.picture, Mode=OneWay}" />
+                    <TextBlock x:Name="imageText" TextWrapping="Wrap" TextAlignment="Center" Foreground="BlueViolet"  Text="Cliquez pour ajouter une image" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"/>
+
+                </Grid>
+            </Border>
+            <TextBox Text="{Binding Path=FormProduct.reference, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="200" FontSize="20" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
+            <TextBox Text="{Binding Path=FormProduct.purchasingPrice, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged }" Width="200" FontSize="20" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
+            <TextBox Text="{Binding Path=FormProduct.sellingPrice, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="200" FontSize="20" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
+            <TextBox Text="{Binding Path=FormProduct.extraInformation}" TextWrapping="Wrap"  AcceptsReturn="True" Height="100"  Width="300" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,70,30,50" Background="Transparent"/>
+
+            <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5">
+                <Button  Content="{StaticResource SaveProduct}"
+                         Command="{Binding SaveProductCommand}"
+                         VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -56,6 +56,7 @@ namespace Logic.ViewModels
                     stkPair.stock.amount = stkPair.amount;
                     _context.Complete();
                     stkPair.stock.Store.NotifyPropertyChanged("StockTotal");
+                    stkPair.stock.Product.NotifyPropertyChanged("StockTotal");
                 }
             });
 

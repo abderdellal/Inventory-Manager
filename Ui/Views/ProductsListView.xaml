@@ -4,9 +4,214 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ui.Views"
+             xmlns:Converters="clr-namespace:Ui.Views.Converters"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock>ProductsListView</TextBlock>
-    </Grid>
+             d:DesignHeight="600" d:DesignWidth="700"
+             xmlns:ViewModels="clr-namespace:Logic.ViewModels;assembly=Logic"
+             xmlns:Models="clr-namespace:Logic.Core.Domain;assembly=Logic"
+             d:DataContext="{Binding Source={StaticResource Locator}, Path=ProductList}"
+             Name="ProductListUserControl">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--datatemplate to display the sub items of a product witch are the available stock for each product-->
+            <DataTemplate x:Key="SubItemTemplate" DataType="Models:Stock">
+                <Grid>
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <!--Button Icons-->
+                            <materialDesign:PackIcon x:Key="editIcon" Kind="Pencil"/>
+                            <materialDesign:PackIcon x:Key="saveIcon" Kind="Floppy"/>
+                            <ViewModels:TextBoxToStockWithAmountConverter x:Key="stockPairConverter"/>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Name="img1" Source="{Binding Path='Store.picture' , Converter={Converters:NullToProductImageConverter}}" HorizontalAlignment="Center"  Height="70" Width="70" VerticalAlignment="Center"  Grid.Column="0"/>
+                    <TextBlock Name="stockTextBlock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="{Binding Path='Store.storeName'}" Grid.Column="1"/>
+                    <TextBlock Name="txtBlock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="{Binding amount}" Grid.Column="2"/>
+                    <TextBox Name="txtBox" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" 
+                 Text="{Binding amount, Mode=OneWay}" Grid.Column="2"/>
+                    <Button Name="editButton" Grid.Column="3" Content="{StaticResource editIcon}" Margin=" 9 5 9 5"/>
+                    <Button Name="saveButton" Grid.Column="3" Content="{StaticResource saveIcon}" Visibility="Collapsed" Margin=" 9 5 9 5"
+                            Command="{Binding Path=DataContext.UpdateStockCommande, ElementName=ProductListUserControl}">
+                        <Button.CommandParameter>
+                            <MultiBinding Converter="{StaticResource stockPairConverter}">
+                                <Binding />
+                                <Binding ElementName="txtBox" Path="Text"/>
+                            </MultiBinding>
+                        </Button.CommandParameter>
+                    </Button>
+                    <Grid.Triggers>
+                        <!--When Pressing the edit Button : 1 - diplay the save button and the textblock for edit,
+                                                            2 - hide the edit button and the textblock
+                        -->
+                        <EventTrigger RoutedEvent="Button.Click" SourceName="editButton">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBox" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBlock" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="saveButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="editButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.Click" SourceName="saveButton">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBox" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBlock" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="saveButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="editButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Grid.Triggers>
+                </Grid>
+            </DataTemplate>
+
+            <!--datatemplate of a product-->
+            <DataTemplate x:Key="ProductTemplate" DataType="Models:Product">
+
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid  HorizontalAlignment="Stretch" Grid.Row="0" >
+                        <Grid.Background>
+                            <SolidColorBrush Color="Azure" Opacity="0.2"/>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="180"/>
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="image" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="80"  Grid.Column="0"
+                                Source="{Binding picture, Converter={Converters:NullToProductImageConverter}}"/>
+                        <TextBlock Text="{Binding reference}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" />
+                        <TextBlock Text="{Binding StockTotal}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" />
+
+                        <Grid Grid.Column="3" Margin=" 2 3 4 2">
+                            <Grid.Resources>
+                                <ResourceDictionary>
+                                    <!--Button Icons-->
+                                    <materialDesign:PackIcon x:Key="starIcon" Kind="StarCircle"/>
+                                    <materialDesign:PackIcon x:Key="deleteIcon" Kind="Delete"/>
+                                    <materialDesign:PackIcon x:Key="editIcon" Kind="Pencil"/>
+                                </ResourceDictionary>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Name="deleteButton" Grid.Column="0" Grid.Row="0" Width="55"
+                                    Content="{StaticResource deleteIcon}"
+                                    Command="{Binding Path=DataContext.DeleteProductCommande, ElementName=ProductListUserControl}"
+                                    CommandParameter="{Binding}">
+                            </Button>
+                            <Button Name="showButton" Grid.Column="1" Grid.Row="0" Width="55"
+                                    Content="{StaticResource starIcon}"
+                                    Command="{Binding Path=DataContext.ProductDetailCommande , ElementName=ProductListUserControl}"
+                                    CommandParameter="{Binding}">
+                            </Button>
+                            <Button Name="editButton" Grid.Column="2" Grid.Row="0" Width="55"
+                                    Content="{StaticResource editIcon}"
+                                    Command="{Binding Path=DataContext.EditProductCommande , ElementName=ProductListUserControl}"
+                                    CommandParameter="{Binding}">
+                            </Button>
+
+                            <Button Name="DisplayStockButton" Content="{StaticResource Display_stock}"  Grid.Column="0" Grid.Row="1"
+                                    Grid.ColumnSpan="3" Width="175"/>
+                            <Button Name="HideStockButton" Content="Hide Stock"  Grid.Column="0" Grid.Row="1"
+                                    Grid.ColumnSpan="3" Width="175" Visibility="Collapsed"/>
+                        </Grid>
+
+                    </Grid>
+
+                    <ItemsControl Name="subItemListView" ItemsSource="{Binding Stocks}" Visibility="Collapsed" Grid.Row="1"  
+                                  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                  Margin="25 15 0 0"  ScrollViewer.CanContentScroll="False"
+                                  ItemTemplate="{StaticResource SubItemTemplate}">
+
+                    </ItemsControl>
+
+                    <Grid.Triggers>
+                        <!--When Pressing the Display stock Button : 1 - diplay the list of available stock for each product and change the button text to hide stock,
+                                                            2 - hide stock list and change the button text
+                        -->
+                        <EventTrigger RoutedEvent="Button.Click" SourceName="DisplayStockButton">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="subItemListView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DisplayStockButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HideStockButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.Click" SourceName="HideStockButton">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="subItemListView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DisplayStockButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HideStockButton" Storyboard.TargetProperty="(UIElement.Visibility)" >
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Grid.Triggers>
+                </Grid>
+            </DataTemplate>
+
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <ListView ItemsSource="{Binding products}"  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ItemTemplate="{StaticResource ProductTemplate}">
+
+    </ListView>
+
 </UserControl>
