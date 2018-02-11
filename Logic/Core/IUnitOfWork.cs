@@ -25,6 +25,7 @@ namespace Logic.Core
         ///// <param name="entity"></param>
         //void DeleteSingleWithNewContext<TEntity>(TEntity entity) where TEntity : class;
 
+        bool hasPendingChanges();
         int Complete();
     }
 }

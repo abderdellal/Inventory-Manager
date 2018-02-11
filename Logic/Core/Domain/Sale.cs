@@ -2,10 +2,11 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Logic.Core.Domain
 {
-    public class Sale
+    public class Sale : ModelBase
     {
         public Sale()
         {
@@ -30,9 +31,44 @@ namespace Logic.Core.Domain
         public string storeName { get; set; }
         [Required]
         public string productReference { get; set; }
+
+        private long _unitPrice;
         [Required]
-        public long unitPrice { get; set; }
+        public long unitPrice
+        {
+            get
+            {
+                return _unitPrice;
+            }
+            set
+            {
+                _unitPrice = value;
+                NotifyPropertyChanged("totalPrice");
+            }
+        }
+
+        private int _amount;
         [Required]
-        public int amount { get; set; }
+        public int amount
+        {
+            get
+            {
+                return _amount;
+            }
+            set
+            {
+                _amount = value;
+                NotifyPropertyChanged("totalPrice");
+            }
+        }
+
+        [NotMapped]
+        public long totalPrice
+        {
+            get
+            {
+                return amount * unitPrice;
+            }
+        }
     }
 }

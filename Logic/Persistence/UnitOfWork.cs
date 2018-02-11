@@ -3,6 +3,7 @@ using Logic.Core.Repositories;
 using Logic.Persistence.Repositories;
 using System.Data.Entity;
 using System;
+using System.Linq;
 
 namespace Logic.Persistence
 {
@@ -31,6 +32,20 @@ namespace Logic.Persistence
         public int Complete()
         {
             return _context.SaveChanges();
+        }
+
+        public bool hasPendingChanges()
+        {
+            try
+            {
+                return _context.ChangeTracker.Entries().Any(e => e.State == EntityState.Added
+                                                          || e.State == EntityState.Modified
+                                                          || e.State == EntityState.Deleted);
+            }
+            catch (System.InvalidOperationException)
+            {
+                return false;
+            }
         }
 
         public void Dispose()

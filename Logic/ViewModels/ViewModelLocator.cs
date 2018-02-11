@@ -1,7 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using System;
-using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using Logic.Persistence;
 using Logic.Desgin_Data;
@@ -37,6 +35,7 @@ namespace Logic.ViewModels
                 SimpleIoc.Default.Register<EditProductViewModel>(() => new EditProductViewModel(_context));
                 SimpleIoc.Default.Register<NewPurchaseViewModel>(() => new NewPurchaseViewModel(_context));
                 SimpleIoc.Default.Register<NewSaleViewModel>(() => new NewSaleViewModel(_context));
+                SimpleIoc.Default.Register<SalesHistoryViewModel>(() => new SalesHistoryViewModel(new UnitOfWork(new InventoryManagerEntities())));
             }
 
             SimpleIoc.Default.Register<HomeViewModel>();
@@ -44,7 +43,6 @@ namespace Logic.ViewModels
             SimpleIoc.Default.Register<DailyReportViewModel>();
             SimpleIoc.Default.Register<MonthlyReportViewModel>();
             SimpleIoc.Default.Register<PurchaseHistoryViewModel>();
-            SimpleIoc.Default.Register<SalesHistoryViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
             SimpleIoc.Default.Register<WeeklyReportViewModel>();
             SimpleIoc.Default.Register<StoreDetailViewModel>();

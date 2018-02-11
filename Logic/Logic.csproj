@@ -126,7 +126,7 @@
     <Compile Include="ViewModels\Stores\EditStoreViewModel.cs" />
     <Compile Include="ViewModels\Reports\DailyReportViewModel.cs" />
     <Compile Include="ViewModels\HomeAboutSetting\HomeViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Stores\MainViewModel.cs" />
     <Compile Include="ViewModels\Messages\DisplayProductDetailMessage.cs" />
     <Compile Include="ViewModels\Messages\DisplayProductListMessage.cs" />
     <Compile Include="ViewModels\Messages\DisplayStoreDetailMessage.cs" />

@@ -54,5 +54,20 @@
     <system:String x:Key="amount">Amount</system:String>
     <system:String x:Key="Save">Save</system:String>
 
+    <!-- Puchase History-->
+    <system:String x:Key="minDate">Between</system:String>
+    <system:String x:Key="maxDate">And</system:String>
+    <system:String x:Key="date">Date</system:String>
+    <system:String x:Key="unitPrice">Unit price</system:String>
+    <system:String x:Key="total">Total</system:String>
+    <system:String x:Key="totalSum">Total sum</system:String>
+    <system:String x:Key="totalAmount">Total amount</system:String>
+    <system:String x:Key="currency">DA</system:String>
+    <system:String x:Key="refresh">Refresh</system:String>
+    <system:String x:Key="export">Export</system:String>
+    <system:String x:Key="reset">Reset</system:String>
+    <system:String x:Key="saveChanges">Save changes</system:String>
+    <system:String x:Key="DeleteSelected">Delete selected item</system:String>
+
 
 </ResourceDictionary>
