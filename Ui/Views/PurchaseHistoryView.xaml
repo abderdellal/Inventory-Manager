@@ -4,9 +4,73 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ui.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock>PurchaseHistoryView</TextBlock>
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="800" d:DesignWidth="800"
+             xmlns:ViewModels="clr-namespace:Logic.ViewModels;assembly=Logic"
+             xmlns:Models="clr-namespace:Logic.Core.Domain;assembly=Logic"
+             d:DataContext="{Binding Source={StaticResource Locator}, Path=PurchasesHistory}"
+             Name="PurchasesHistoryUserControl">
+    <Grid Margin="10, 40, 10, 10" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  Grid.Row="0">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 20" >
+                <TextBlock Text="{StaticResource minDate}"  Margin="0, 5, 30, 0" />
+                <DatePicker x:Name="minDatePicker" SelectedDateChanged="minDatePicker_SelectedDateChanged" />
+                <TextBlock Text="{StaticResource maxDate}" Margin="30, 5, 30, 0" />
+                <DatePicker x:Name="maxDatePicker" SelectedDateChanged="maxDatePicker_SelectedDateChanged" />
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0, 0, 0, 20">
+                <TextBlock Text="{StaticResource Product}"  Margin="30, 5, 30, 0" />
+                <ComboBox SelectedItem="{Binding selectedProduct}" ItemsSource="{Binding products, Mode=OneWay}" DisplayMemberPath="reference" Grid.Column="1" Grid.Row="2" Width="150" />
+                <TextBlock Text="{StaticResource Store}"  Margin="30, 5, 30, 0" />
+                <ComboBox SelectedItem="{Binding selectedStore}" ItemsSource="{Binding stores, Mode=OneWay}" DisplayMemberPath="storeName"  Grid.Column="1" Grid.Row="2" Width="150" />
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid x:Name="MyDataGird" ItemsSource="{Binding Purchases}" CanUserAddRows="false" AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Center" CanUserSortColumns="True" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{StaticResource date}" IsReadOnly="True" Binding="{Binding date}"/>
+                <DataGridTextColumn Header="{StaticResource Product}" Binding="{Binding productReference}"/>
+                <DataGridTextColumn Header="{StaticResource Store}" Binding="{Binding storeName}"/>
+                <DataGridTextColumn Header="{StaticResource unitPrice}"  Binding="{Binding unitPrice}"/>
+                <DataGridTextColumn Header="{StaticResource amount}" Binding="{Binding amount}"/>
+                <DataGridTextColumn Header="{StaticResource total}" IsReadOnly="True" Binding="{Binding totalPrice}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="0,15,0,15">
+            <TextBlock Text="{StaticResource totalAmount}" FontSize="15" FontWeight="Bold"/>
+            <TextBlock Text="{Binding TotalAmount}" Margin="10,0,80,0" FontSize="15" FontWeight="Bold"/>
+            <TextBlock Text="{StaticResource totalSum}" FontSize="15" FontWeight="Bold"/>
+            <TextBlock Text="{Binding TotalSum}" Margin="10,0,0,0" FontSize="15" FontWeight="Bold"/>
+            <TextBlock Text="{StaticResource currency}" Margin="5,0,0,0" FontSize="15" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" Margin="0,15,0,15">
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="4">
+            <Button Content="{StaticResource refresh}" 
+                    Command="{Binding refreshCommand}" 
+                    Margin="30, 0, 0, 0"/>
+            <Button Content="{StaticResource reset}" 
+                    Command="{Binding resetCommand}"
+                    Margin="30, 0, 0, 0"/>
+            <Button Content="{StaticResource saveChanges}" 
+                    Command="{Binding saveChangesCommand}"
+                    Margin="30, 0, 0, 0"/>
+            <Button Content="{StaticResource DeleteSelected}" 
+                    CommandParameter="{Binding SelectedItems, ElementName=MyDataGird}"
+                    Command="{Binding DeleteSelectedCommand}"
+                    Margin="30, 0, 0, 0"/>
+        </StackPanel>
     </Grid>
 </UserControl>

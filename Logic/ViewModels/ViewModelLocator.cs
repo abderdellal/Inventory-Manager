@@ -36,13 +36,14 @@ namespace Logic.ViewModels
                 SimpleIoc.Default.Register<NewPurchaseViewModel>(() => new NewPurchaseViewModel(_context));
                 SimpleIoc.Default.Register<NewSaleViewModel>(() => new NewSaleViewModel(_context));
                 SimpleIoc.Default.Register<SalesHistoryViewModel>(() => new SalesHistoryViewModel(new UnitOfWork(new InventoryManagerEntities())));
+                SimpleIoc.Default.Register<PurchaseHistoryViewModel>(() => new PurchaseHistoryViewModel(new UnitOfWork(new InventoryManagerEntities())));
+
             }
 
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
             SimpleIoc.Default.Register<DailyReportViewModel>();
             SimpleIoc.Default.Register<MonthlyReportViewModel>();
-            SimpleIoc.Default.Register<PurchaseHistoryViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
             SimpleIoc.Default.Register<WeeklyReportViewModel>();
             SimpleIoc.Default.Register<StoreDetailViewModel>();
