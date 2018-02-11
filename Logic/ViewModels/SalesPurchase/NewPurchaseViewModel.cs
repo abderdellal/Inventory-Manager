@@ -49,10 +49,12 @@ namespace Logic.ViewModels
         public void SavePurshase()
         {
             Purchase p = new Purchase();
-            p.Store = selectedStore;
-            p.Product = selectedProduct;
+            p.storeName = selectedStore.storeName;
+            p.productReference = selectedProduct.reference;
             p.amount = amount;
-            p.date = DateTime.Now.ToString("DD/MM/YYYY");
+            p.unitPrice = selectedProduct.purchasingPrice;
+            //p.date = DateTime.Now.ToString("dd/MM/yyyy");
+            p.date = DateTime.Now;
             _context.Purchases.Add(p);
             var stks = _context.Stocks.GetStocksWithStoresAndProductWhere(stk => (stk.Product.id == selectedProduct.id && stk.Store.id == selectedStore.id));
             if(stks != null && stks.Count() > 0)

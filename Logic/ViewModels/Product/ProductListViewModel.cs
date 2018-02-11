@@ -42,11 +42,11 @@ namespace Logic.ViewModels
                 products = new ObservableCollection<Product>(_context.Products.GetProductsWithStockPerStore());
             }
 
-            DeleteProductCommande = new RelayCommand<Product>(s =>
+            DeleteProductCommande = new RelayCommand<Product>(p =>
             {
-                _context.Products.deleteProductOnCascade(s);
+                _context.Products.deleteProductOnCascade(p);
                 _context.Complete();
-                products.Remove(s);
+                products.Remove(p);
 
             });
             UpdateStockCommande = new RelayCommand<StockWithAmount>(stkPair =>

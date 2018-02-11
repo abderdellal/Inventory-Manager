@@ -1,5 +1,8 @@
 ﻿
 
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Logic.Core.Domain
 {
     public class Sale
@@ -9,22 +12,27 @@ namespace Logic.Core.Domain
 
         }
 
-        public Sale(int id, string date, Store store, Product product, int amount)
+        public Sale(int id, DateTime date, string storeName, string productReference, int amount, long unitPrice)
         {
             this.id = id;
             this.date = date;
-            this.Store = store;
-            this.Product = product;
             this.amount = amount;
+            this.storeName = storeName;
+            this.productReference = productReference;
+            this.unitPrice = unitPrice;
+
         }
 
         public long id { get; set; }
-        public string date { get; set; }
-        public long storeID { get; set; }
-        public long productID { get; set; }
-        public long amount { get; set; }
-
-        public virtual Product Product { get; set; }
-        public virtual Store Store { get; set; }
+        [Required]
+        public DateTime date { get; set; }
+        [Required]
+        public string storeName { get; set; }
+        [Required]
+        public string productReference { get; set; }
+        [Required]
+        public long unitPrice { get; set; }
+        [Required]
+        public int amount { get; set; }
     }
 }

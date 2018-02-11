@@ -29,8 +29,6 @@ namespace Logic.Persistence.Repositories
 
         public void deleteStoreOnCascade(Store s)
         {
-            InventoryManagerEntities.Purchases.RemoveRange(s.Purchases);
-            InventoryManagerEntities.Sales.RemoveRange(s.Sales);
             InventoryManagerEntities.Stocks.RemoveRange(s.Stocks);
             InventoryManagerEntities.Stores.Remove(s);
         }

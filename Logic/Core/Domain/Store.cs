@@ -10,16 +10,12 @@ namespace Logic.Core.Domain
     {
         public Store()
         {
-            this.Purchases = new HashSet<Purchase>();
             this.Stocks = new HashSet<Stock>();
-            this.Sales = new HashSet<Sale>();
         }
 
         public Store(long id, string firstName, string lastName, string storeName, string phoneNumber, byte[] picture, string extraInformation)
         {
-            this.Purchases = new HashSet<Purchase>();
             this.Stocks = new HashSet<Stock>();
-            this.Sales = new HashSet<Sale>();
 
             this.id = id;
             this.firstName = firstName;
@@ -50,8 +46,6 @@ namespace Logic.Core.Domain
             get { return Stocks.Sum(s => s.amount); }
         }
 
-        public virtual ICollection<Purchase> Purchases { get; set; }
         public virtual ICollection<Stock> Stocks { get; set; }
-        public virtual ICollection<Sale> Sales { get; set; }
     }
 }
