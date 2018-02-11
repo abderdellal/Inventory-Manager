@@ -121,11 +121,11 @@
     <Compile Include="Persistence\Repositories\ProductRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Validation Attribute\MyPhoneAttribute.cs" />
-    <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\EditProductViewModel.cs" />
-    <Compile Include="ViewModels\EditStoreViewModel.cs" />
-    <Compile Include="ViewModels\DailyReportViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\HomeAboutSetting\AboutViewModel.cs" />
+    <Compile Include="ViewModels\Product\EditProductViewModel.cs" />
+    <Compile Include="ViewModels\Stores\EditStoreViewModel.cs" />
+    <Compile Include="ViewModels\Reports\DailyReportViewModel.cs" />
+    <Compile Include="ViewModels\HomeAboutSetting\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Messages\DisplayProductDetailMessage.cs" />
     <Compile Include="ViewModels\Messages\DisplayProductListMessage.cs" />
@@ -135,18 +135,18 @@
     <Compile Include="ViewModels\Messages\EditStoreMessage.cs" />
     <Compile Include="ViewModels\Messages\ProductAddedMessage.cs" />
     <Compile Include="ViewModels\Messages\StoreAddedMessage.cs" />
-    <Compile Include="ViewModels\MonthlyReportViewModel.cs" />
-    <Compile Include="ViewModels\NewPurchaseViewModel.cs" />
-    <Compile Include="ViewModels\NewSaleViewModel.cs" />
-    <Compile Include="ViewModels\ProductDetailViewModel.cs" />
-    <Compile Include="ViewModels\ProductListViewModel.cs" />
-    <Compile Include="ViewModels\PurchaseHistoryViewModel.cs" />
-    <Compile Include="ViewModels\SalesHistoryViewModel.cs" />
-    <Compile Include="ViewModels\SettingViewModel.cs" />
-    <Compile Include="ViewModels\StoreDetailViewModel.cs" />
-    <Compile Include="ViewModels\StoresListViewModel.cs" />
+    <Compile Include="ViewModels\Reports\MonthlyReportViewModel.cs" />
+    <Compile Include="ViewModels\SalesPurchase\NewPurchaseViewModel.cs" />
+    <Compile Include="ViewModels\SalesPurchase\NewSaleViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductDetailViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductListViewModel.cs" />
+    <Compile Include="ViewModels\SalesPurchase\PurchaseHistoryViewModel.cs" />
+    <Compile Include="ViewModels\SalesPurchase\SalesHistoryViewModel.cs" />
+    <Compile Include="ViewModels\HomeAboutSetting\SettingViewModel.cs" />
+    <Compile Include="ViewModels\Stores\StoreDetailViewModel.cs" />
+    <Compile Include="ViewModels\Stores\StoresListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="ViewModels\WeeklyReportViewModel.cs" />
+    <Compile Include="ViewModels\Reports\WeeklyReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

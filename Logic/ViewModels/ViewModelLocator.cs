@@ -35,14 +35,14 @@ namespace Logic.ViewModels
                 SimpleIoc.Default.Register<ProductListViewModel>(() => new ProductListViewModel(_context));
                 SimpleIoc.Default.Register<EditStoreViewModel>(() => new EditStoreViewModel(_context));
                 SimpleIoc.Default.Register<EditProductViewModel>(() => new EditProductViewModel(_context));
+                SimpleIoc.Default.Register<NewPurchaseViewModel>(() => new NewPurchaseViewModel(_context));
+                SimpleIoc.Default.Register<NewSaleViewModel>(() => new NewSaleViewModel(_context));
             }
 
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
             SimpleIoc.Default.Register<DailyReportViewModel>();
             SimpleIoc.Default.Register<MonthlyReportViewModel>();
-            SimpleIoc.Default.Register<NewPurchaseViewModel>();
-            SimpleIoc.Default.Register<NewSaleViewModel>();
             SimpleIoc.Default.Register<PurchaseHistoryViewModel>();
             SimpleIoc.Default.Register<SalesHistoryViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
@@ -113,14 +113,28 @@ namespace Logic.ViewModels
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<NewPurchaseViewModel>();
+                if(ViewModelBase.IsInDesignModeStatic)
+                {
+                    return new NewPurchaseViewModel(null);
+                }
+                else
+                { 
+                    return ServiceLocator.Current.GetInstance<NewPurchaseViewModel>();
+                }
             }
         }
         public NewSaleViewModel NewSale
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<NewSaleViewModel>();
+                if (ViewModelBase.IsInDesignModeStatic)
+                {
+                    return new NewSaleViewModel(null);
+                }
+                else
+                {
+                    return ServiceLocator.Current.GetInstance<NewSaleViewModel>();
+                }
             }
         }
         public ProductListViewModel ProductList

@@ -4,9 +4,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ui.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock>NewSaleView</TextBlock>
-    </Grid>
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="800" d:DesignWidth="800"
+             xmlns:ViewModels="clr-namespace:Logic.ViewModels;assembly=Logic"
+             xmlns:Models="clr-namespace:Logic.Core.Domain;assembly=Logic"
+             d:DataContext="{Binding Source={StaticResource Locator}, Path=NewSale}"
+             Name="NewSaleUserControl">
+
+    <ScrollViewer >
+        <Grid HorizontalAlignment="Center" Margin="0,30,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text ="{StaticResource New_Sale}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="{StaticResource Product}" Grid.Column="0" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource Store}" Grid.Column="0" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource amount}" Grid.Column="0" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+
+
+            <ComboBox SelectedItem="{Binding selectedProduct}" ItemsSource="{Binding products}" DisplayMemberPath="reference" Width="200" FontSize="20" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
+            <ComboBox SelectedItem="{Binding selectedStore}" ItemsSource="{Binding stores}" DisplayMemberPath="storeName" Width="200" FontSize="20" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
+            <TextBox Text="{Binding stringAmount, UpdateSourceTrigger=PropertyChanged}" Width="100" FontSize="20" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="50,10,50,10" />
+
+            <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="4">
+                <Button  Content="{StaticResource Save}"
+                         Command="{Binding SaveCommand}"
+                         VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </UserControl>

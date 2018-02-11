@@ -48,4 +48,11 @@
     <!-- Add Product-->
     <system:String x:Key="SaveProduct">Save the product</system:String>
 
+    <!-- New Puchase -->
+    <system:String x:Key="Product">Product</system:String>
+    <system:String x:Key="Store">store</system:String>
+    <system:String x:Key="amount">Amount</system:String>
+    <system:String x:Key="Save">Save</system:String>
+
+
 </ResourceDictionary>
