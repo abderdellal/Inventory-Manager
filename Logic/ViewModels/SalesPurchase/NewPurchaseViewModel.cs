@@ -4,6 +4,7 @@ using Logic.Core;
 using Logic.Core.Domain;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Logic.ViewModels
@@ -12,8 +13,8 @@ namespace Logic.ViewModels
     {
         private IUnitOfWork _context;
 
-        public IEnumerable<Store> stores { get; set; }
-        public IEnumerable<Product> products { get; set; }
+        public ObservableCollection<Store> stores { get; set; }
+        public ObservableCollection<Product> products { get; set; }
         public Store selectedStore { get; set; }
         public Product selectedProduct { get; set; }
         private int amount;
@@ -38,13 +39,22 @@ namespace Logic.ViewModels
         public NewPurchaseViewModel(IUnitOfWork ctx)
         {
             _context = ctx;
-            stores = _context.Stores.GetAll();
-            products = _context.Products.GetAll();
+            stores = new ObservableCollection<Store>(_context.Stores.GetAll());
+            products = new ObservableCollection<Product>(_context.Products.GetAll());
             selectedProduct = null;
             selectedStore = null;
             amount = 0;
             SaveCommand = new RelayCommand(SavePurshase, canSave);
             this.PropertyChanged += (s, e) => SaveCommand.RaiseCanExecuteChanged();
+
+            MessengerInstance.Register<Messages.ProductAddedMessage>(this, (msg) =>
+            {
+                products.Add(msg.product);
+            });
+            MessengerInstance.Register<Messages.StoreAddedMessage>(this, (msg) =>
+            {
+                stores.Add(msg.store);
+            });
         }
         public void SavePurshase()
         {

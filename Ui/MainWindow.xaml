@@ -16,7 +16,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="600" Width="1050" MinWidth="850" MinHeight="600"
-        Title="Simpe Inventory Manager">
+        Title="Inventory Manager 1.0">
 
     <Window.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}" />
@@ -30,6 +30,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type ViewModels:AboutViewModel}">
                 <Views:AboutView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:SettingsViewModel}">
+                <Views:SettingsView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type ViewModels:EditProductViewModel}">
                 <Views:EditProductView/>
@@ -64,14 +67,8 @@
             <DataTemplate DataType="{x:Type ViewModels:SalesHistoryViewModel}">
                 <Views:SaleHistoryView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type ViewModels:SettingViewModel}">
-                <Views:SettingView/>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type ViewModels:StoresListViewModel}">
                 <Views:StoresListView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type ViewModels:WeeklyReportViewModel}">
-                <Views:WeeklyReportView/>
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
@@ -90,19 +87,18 @@
                     <materialDesign:PackIcon Kind="Star"/>
                 </MenuItem.Icon>
                 <MenuItem Header="{StaticResource Home}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Home, Source={StaticResource Locator}}"  >
-                    <!-- CommandParameter="{Binding  Home, Source={StaticResource Locator}}" -->
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="HomeModern"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="{StaticResource Setting}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Setting, Source={StaticResource Locator}}" >
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Settings"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="{StaticResource About}" Command="{Binding changeViewCommand}" CommandParameter="{Binding About, Source={StaticResource Locator}}">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="Copyright"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource Settings}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Settings, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Settings"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -177,11 +173,6 @@
                         <materialDesign:PackIcon Kind="CalendarToday"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="{StaticResource Weekly_Report}" Command="{Binding changeViewCommand}" CommandParameter="{Binding WeeklyReport, Source={StaticResource Locator}}">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="ViewWeek"/>
-                    </MenuItem.Icon>
-                </MenuItem>
                 <MenuItem Header="{StaticResource Monthly_Report}" Command="{Binding changeViewCommand}" CommandParameter="{Binding MonthlyReport, Source={StaticResource Locator}}">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="CalendarMultiple"/>
@@ -195,7 +186,7 @@
 
         <!-- this Content control will change the displayed view according to the SelectedViewModel property in the MainViewModel -->
 
-        <ContentControl Content="{Binding SelectedViewModel}"/>
+        <ContentControl x:Name="myMainFrame" Content="{Binding SelectedViewModel}"/>
 
     </DockPanel>
 </Window>

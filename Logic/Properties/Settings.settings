@@ -1,0 +1,20 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Logic.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DailyTargetAll" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="MonthlyTargetAll" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">70</Value>
+    </Setting>
+    <Setting Name="firstName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">abderrahmane
+        </Value>
+    </Setting>
+    <Setting Name="lastName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dellal
+        </Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -33,6 +33,9 @@ namespace Logic.Core.Domain
         [Required(ErrorMessage = "Selling Price is mandatory !")]
         public long sellingPrice { get; set; }
 
+        public int? dailyTarget { get; set; }
+        public int? monthlyTarget { get; set; }
+
         [MaxLength]
         public byte[] picture { get; set; }
         public string extraInformation { get; set; }

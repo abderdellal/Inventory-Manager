@@ -40,6 +40,8 @@ namespace Logic.ViewModels
                 FormProduct.purchasingPrice = value.purchasingPrice;
                 FormProduct.sellingPrice = value.sellingPrice;
                 FormProduct.extraInformation = value.extraInformation;
+                FormProduct.dailyTarget = value.dailyTarget;
+                FormProduct.monthlyTarget = value.monthlyTarget;
             }
         }
 
@@ -75,6 +77,9 @@ namespace Logic.ViewModels
                 ProductToEdit.purchasingPrice = FormProduct.purchasingPrice;
                 ProductToEdit.sellingPrice = FormProduct.sellingPrice;
                 ProductToEdit.extraInformation = FormProduct.extraInformation;
+                ProductToEdit.dailyTarget = FormProduct.dailyTarget;
+                ProductToEdit.monthlyTarget = FormProduct.monthlyTarget;
+
                 _context.Complete();
                 _Product = null;
                 resetForm();
@@ -97,6 +102,8 @@ namespace Logic.ViewModels
             FormProduct.purchasingPrice = 0;
             FormProduct.sellingPrice = 0;
             FormProduct.extraInformation = "";
+            FormProduct.dailyTarget = null;
+            FormProduct.monthlyTarget = null;
         }
     }
 }

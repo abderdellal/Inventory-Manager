@@ -25,6 +25,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
 
@@ -32,7 +34,9 @@
             <TextBlock Text="{StaticResource reference}" Grid.Column="0" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
             <TextBlock Text="{StaticResource purchasePrice}" Grid.Column="0" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
             <TextBlock Text="{StaticResource sellingPrice}" Grid.Column="0" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
-            <TextBlock Text="{StaticResource extraInfo}" Grid.Column="0" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource dailyTarget}" Grid.Column="0" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource MonthlyTarget}" Grid.Column="0" Grid.Row="5" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
+            <TextBlock Text="{StaticResource extraInfo}" Grid.Column="0" Grid.Row="6" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
 
             <Border x:Name="bordurePhoto" BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" >
                 <Grid>
@@ -44,9 +48,11 @@
             <TextBlock Text="{Binding Path=product.reference }" Width="200" FontSize="20" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
             <TextBlock Text="{Binding Path=product.purchasingPrice }"  Width="200" FontSize="20" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
             <TextBlock Text="{Binding Path=product.sellingPrice }" Width="200" FontSize="20" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
-            <TextBlock Text="{Binding Path=product.extraInformation }" TextWrapping="Wrap" Height="100"  Width="300" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,70,30,50" Background="Transparent"/>
+            <TextBlock Text="{Binding Path=product.dailyTarget }"  Width="200" FontSize="20" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
+            <TextBlock Text="{Binding Path=product.monthlyTarget }" Width="200" FontSize="20" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
+            <TextBlock Text="{Binding Path=product.extraInformation }" TextWrapping="Wrap" Height="100"  Width="300" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,70,30,50" Background="Transparent"/>
 
-            <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5">
+            <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="7">
                 <Button Content="{StaticResource back}"  VerticalAlignment="Center" HorizontalAlignment="Center"
                             Command="{Binding BackClickCommand}"/>
             </StackPanel>

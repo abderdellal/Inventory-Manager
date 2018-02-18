@@ -6,9 +6,6 @@ using System.Windows.Controls;
 
 namespace Ui.Views
 {
-    /// <summary>
-    /// Interaction logic for SaleHistoryView.xaml
-    /// </summary>
     public partial class SaleHistoryView : UserControl
     {
         public SaleHistoryView()

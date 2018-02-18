@@ -142,17 +142,14 @@
     <Compile Include="Views\SaleHistoryView.xaml.cs">
       <DependentUpon>SaleHistoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingView.xaml.cs">
-      <DependentUpon>SettingView.xaml</DependentUpon>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StoreDetailView.xaml.cs">
       <DependentUpon>StoreDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StoresListView.xaml.cs">
       <DependentUpon>StoresListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\WeeklyReportView.xaml.cs">
-      <DependentUpon>WeeklyReportView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -221,7 +218,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingView.xaml">
+    <Page Include="Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,10 +227,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StoresListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\WeeklyReportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

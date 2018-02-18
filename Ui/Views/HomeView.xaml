@@ -4,9 +4,76 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ui.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock>HomeView</TextBlock>
-    </Grid>
+             DataContext="{Binding Source={StaticResource Locator}, Path=Home}"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding UserName}" FontStyle="Oblique" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="20" Margin="0,50"/>
+            <TextBlock Text="{StaticResource totlSummary}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" FontSize="18" FontStyle="Italic"/>
+            <TextBlock Text="{StaticResource totalSales_Target}" Grid.Column="1" Grid.Row="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{StaticResource percentage}" Grid.Column="2" Grid.Row="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{StaticResource today}" Grid.Column="0" Grid.Row="3" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{StaticResource thisMonth}" Grid.Column="0" Grid.Row="4" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Grid.Row="3" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} / {1}">
+                        <Binding Path="totalDaySales" />
+                        <Binding Path="totalDayTarget" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Text="{Binding totalDailyPercentage, StringFormat=' {0}%'}" Grid.Column="2" Grid.Row="3" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Grid.Row="4" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} / {1}">
+                        <Binding Path="totalMonthSales" />
+                        <Binding Path="totalMonthTarget" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Text="{Binding totalMonthlyPercentage, StringFormat=' {0}%'}" Grid.Column="2" Grid.Row="4" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{StaticResource perProduct}" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" FontSize="18" FontStyle="Italic" VerticalAlignment="Bottom"/>
+            <ListView ItemsSource="{Binding productSales}" Grid.Row="6" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="30,20,30,50">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="{StaticResource reference}" Width="120" DisplayMemberBinding="{Binding productReference}" />
+                        <GridViewColumn Header="{StaticResource TodaySale_target}" Width="170" >
+                            <GridViewColumn.DisplayMemberBinding>
+                                <MultiBinding StringFormat="{}{0} / {1}">
+                                    <Binding Path="TotalSaleDay" />
+                                    <Binding Path="DayTarget" />
+                                </MultiBinding>
+                            </GridViewColumn.DisplayMemberBinding>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource percentage}" Width="120" DisplayMemberBinding="{Binding TargetPourcentageDay, StringFormat=' {0}%'}" />
+                        <GridViewColumn Header="{StaticResource monthSale_target}" Width="170" >
+                            <GridViewColumn.DisplayMemberBinding>
+                                <MultiBinding StringFormat="{}{0} / {1}">
+                                    <Binding Path="TotalSaleMonth" />
+                                    <Binding Path="MonthTarget" />
+                                </MultiBinding>
+                            </GridViewColumn.DisplayMemberBinding>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource percentage}" Width="120" DisplayMemberBinding="{Binding TargetPourcentageMonth, StringFormat=' {0}%'}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

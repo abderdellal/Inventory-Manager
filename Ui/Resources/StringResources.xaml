@@ -4,9 +4,9 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Main Menu -->
-    <system:String x:Key="Main_Menu">Main Menu</system:String>
+    <system:String x:Key="Main_Menu">Home</system:String>
     <system:String x:Key="Home">Home</system:String>
-    <system:String x:Key="Setting">Setting</system:String>
+    <system:String x:Key="Settings">Settings</system:String>
     <system:String x:Key="About">About</system:String>
     <system:String x:Key="Stores">Stores</system:String>
     <system:String x:Key="Display_Stores">Display Stores</system:String>
@@ -41,7 +41,7 @@
     <system:String x:Key="SaveStore">Save the store</system:String>
 
     <!-- Display Product Detail-->
-    <system:String x:Key="reference">Product Name</system:String>
+    <system:String x:Key="reference">Product Reference</system:String>
     <system:String x:Key="sellingPrice">Selling price</system:String>
     <system:String x:Key="purchasePrice">purchase price</system:String>
 
@@ -69,5 +69,24 @@
     <system:String x:Key="saveChanges">Save changes</system:String>
     <system:String x:Key="DeleteSelected">Delete selected item</system:String>
 
+    <!-- Settings-->
+    <system:String x:Key="firstName">First Name</system:String>
+    <system:String x:Key="lastName">Last Name</system:String>
+    <system:String x:Key="MonthlyTarget">Monthly Target</system:String>
+    <system:String x:Key="dailyTarget">Daily Target</system:String>
+    <system:String x:Key="saveSettings">Save Settings</system:String>
+
+    <!-- Setting -->
+    <system:String x:Key="totlSummary">Total summary :</system:String>
+    <system:String x:Key="totalSales_Target">Total Sales / Target</system:String>
+    <system:String x:Key="percentage">Percentage</system:String>
+    <system:String x:Key="today">Today</system:String>
+    <system:String x:Key="thisMonth">This Month</system:String>
+    <system:String x:Key="perProduct">Per Product :</system:String>
+    <system:String x:Key="TodaySale_target">Today's Sales / Target</system:String>
+    <system:String x:Key="monthSale_target">Month's Sales / Target</system:String>
+
+    <!-- Reports-->
+    <system:String x:Key="targetPercentage">Target Percentage</system:String>
 
 </ResourceDictionary>

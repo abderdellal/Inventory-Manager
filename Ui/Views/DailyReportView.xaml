@@ -5,8 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ui.Views"
              mc:Ignorable="d" 
+             DataContext="{Binding Source={StaticResource Locator}, Path=DailyReport}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock>DailyReportView</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock  FontSize="18" HorizontalAlignment="Center" Margin="0,30"> Daily Report</TextBlock>
+        <ScrollViewer  Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="50,0">
+            <TextBox x:Name="txtBox"  TextWrapping="Wrap" AcceptsTab="True" AcceptsReturn="True" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>

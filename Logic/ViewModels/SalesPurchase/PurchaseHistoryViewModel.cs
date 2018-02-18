@@ -113,6 +113,14 @@ namespace Logic.ViewModels
                     return false;
             }
             );
+            MessengerInstance.Register<Messages.ProductAddedMessage>(this, (msg) =>
+            {
+                products.Add(msg.product);
+            });
+            MessengerInstance.Register<Messages.StoreAddedMessage>(this, (msg) =>
+            {
+                stores.Add(msg.store);
+            });
         }
 
         private void ResetFeilds()

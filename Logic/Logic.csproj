@@ -120,8 +120,14 @@
     <Compile Include="Core\Repositories\IProductRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Validation Attribute\MyPhoneAttribute.cs" />
     <Compile Include="ViewModels\HomeAboutSetting\AboutViewModel.cs" />
+    <Compile Include="ViewModels\HomeAboutSetting\SettingsViewModel.cs" />
     <Compile Include="ViewModels\Product\EditProductViewModel.cs" />
     <Compile Include="ViewModels\Stores\EditStoreViewModel.cs" />
     <Compile Include="ViewModels\Reports\DailyReportViewModel.cs" />
@@ -142,17 +148,19 @@
     <Compile Include="ViewModels\Product\ProductListViewModel.cs" />
     <Compile Include="ViewModels\SalesPurchase\PurchaseHistoryViewModel.cs" />
     <Compile Include="ViewModels\SalesPurchase\SalesHistoryViewModel.cs" />
-    <Compile Include="ViewModels\HomeAboutSetting\SettingViewModel.cs" />
     <Compile Include="ViewModels\Stores\StoreDetailViewModel.cs" />
     <Compile Include="ViewModels\Stores\StoresListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="ViewModels\Reports\WeeklyReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

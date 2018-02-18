@@ -37,15 +37,9 @@ namespace Logic.ViewModels
                 SimpleIoc.Default.Register<NewSaleViewModel>(() => new NewSaleViewModel(_context));
                 SimpleIoc.Default.Register<SalesHistoryViewModel>(() => new SalesHistoryViewModel(new UnitOfWork(new InventoryManagerEntities())));
                 SimpleIoc.Default.Register<PurchaseHistoryViewModel>(() => new PurchaseHistoryViewModel(new UnitOfWork(new InventoryManagerEntities())));
-
             }
-
-            SimpleIoc.Default.Register<HomeViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
-            SimpleIoc.Default.Register<DailyReportViewModel>();
-            SimpleIoc.Default.Register<MonthlyReportViewModel>();
-            SimpleIoc.Default.Register<SettingViewModel>();
-            SimpleIoc.Default.Register<WeeklyReportViewModel>();
             SimpleIoc.Default.Register<StoreDetailViewModel>();
             SimpleIoc.Default.Register<ProductDetailViewModel>();
 
@@ -65,7 +59,7 @@ namespace Logic.ViewModels
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<HomeViewModel>();
+                    return new HomeViewModel(_context);
             }
         }
         public AboutViewModel About
@@ -73,6 +67,14 @@ namespace Logic.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<AboutViewModel>();
+            }
+        }
+
+        public SettingsViewModel Settings
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SettingsViewModel>();
             }
         }
 
@@ -96,7 +98,7 @@ namespace Logic.ViewModels
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<DailyReportViewModel>();
+                return new DailyReportViewModel(_context);
             }
         }
 
@@ -104,7 +106,7 @@ namespace Logic.ViewModels
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MonthlyReportViewModel>();
+                return new MonthlyReportViewModel(_context);
             }
         }
 
@@ -161,13 +163,6 @@ namespace Logic.ViewModels
                 return ServiceLocator.Current.GetInstance<SalesHistoryViewModel>();
             }
         }
-        public SettingViewModel Setting
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<SettingViewModel>();
-            }
-        }
         public StoresListViewModel StoresList
         {
             get
@@ -177,13 +172,6 @@ namespace Logic.ViewModels
 
                 else
                     return ServiceLocator.Current.GetInstance<StoresListViewModel>();
-            }
-        }
-        public WeeklyReportViewModel WeeklyReport
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<WeeklyReportViewModel>();
             }
         }
         public StoreDetailViewModel StoreDetail

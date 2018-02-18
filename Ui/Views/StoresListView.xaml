@@ -10,7 +10,7 @@
              d:DesignHeight="600" d:DesignWidth="700"
              xmlns:ViewModels="clr-namespace:Logic.ViewModels;assembly=Logic"
              xmlns:Models="clr-namespace:Logic.Core.Domain;assembly=Logic"
-             DataContext="{Binding Source={StaticResource Locator}, Path=StoresList}"
+             d:DataContext="{Binding Source={StaticResource Locator}, Path=StoresList}"
              Name="StoreListUserControl">
 
     <UserControl.Resources>

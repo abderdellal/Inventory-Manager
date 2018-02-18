@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Ui.Views
 {
     /// <summary>
-    /// Interaction logic for WeeklyReportView.xaml
+    /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class WeeklyReportView : UserControl
+    public partial class SettingsView : UserControl
     {
-        public WeeklyReportView()
+        public SettingsView()
         {
             InitializeComponent();
         }
