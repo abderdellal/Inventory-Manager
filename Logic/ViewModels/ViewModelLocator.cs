@@ -28,13 +28,15 @@ namespace Logic.ViewModels
             else
             {
                 _context = new UnitOfWork(new InventoryManagerEntities());
-                SimpleIoc.Default.Register<MainViewModel>(() => new MainViewModel(this));
-                SimpleIoc.Default.Register<StoresListViewModel>(() => new StoresListViewModel(_context));
-                SimpleIoc.Default.Register<ProductListViewModel>(() => new ProductListViewModel(_context));
-                SimpleIoc.Default.Register<EditStoreViewModel>(() => new EditStoreViewModel(_context));
-                SimpleIoc.Default.Register<EditProductViewModel>(() => new EditProductViewModel(_context));
-                SimpleIoc.Default.Register<NewPurchaseViewModel>(() => new NewPurchaseViewModel(_context));
-                SimpleIoc.Default.Register<NewSaleViewModel>(() => new NewSaleViewModel(_context));
+                SimpleIoc.Default.Register<IUnitOfWork>(() => _context);
+                SimpleIoc.Default.Register<ViewModelLocator>(() => this);
+                SimpleIoc.Default.Register<MainViewModel>();
+                SimpleIoc.Default.Register<StoresListViewModel>();
+                SimpleIoc.Default.Register<ProductListViewModel>();
+                SimpleIoc.Default.Register<EditStoreViewModel>();
+                SimpleIoc.Default.Register<EditProductViewModel>();
+                SimpleIoc.Default.Register<NewPurchaseViewModel>();
+                SimpleIoc.Default.Register<NewSaleViewModel>();
                 SimpleIoc.Default.Register<SalesHistoryViewModel>(() => new SalesHistoryViewModel(new UnitOfWork(new InventoryManagerEntities())));
                 SimpleIoc.Default.Register<PurchaseHistoryViewModel>(() => new PurchaseHistoryViewModel(new UnitOfWork(new InventoryManagerEntities())));
             }

@@ -271,6 +271,11 @@
   <ItemGroup>
     <Resource Include="Resources\defaultUser.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="InventoryManager.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
