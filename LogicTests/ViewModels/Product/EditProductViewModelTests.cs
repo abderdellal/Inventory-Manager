@@ -31,17 +31,16 @@ namespace Logic.ViewModels.Tests
             contextMoq = new Mock<IUnitOfWork>();
             EditProductViewModel vm = new EditProductViewModel(contextMoq.Object);
             vm.FormProduct = product;
-            Assert.IsTrue(true);
+            Assert.IsTrue(vm.CanSaveProduct());
         }
 
         [TestMethod()]
         public void CantSaveInvalidProductTest()
         {
-            Mock<Product> ValidproductMock = new Mock<Product>();
-            ValidproductMock.Setup(p => p.IsValid()).Returns(() => false);
+            var InvalidProduct = new Product(0, "", 100, 200, null, null);
             contextMoq = new Mock<IUnitOfWork>();
             EditProductViewModel vm = new EditProductViewModel(contextMoq.Object);
-            vm.FormProduct = ValidproductMock.Object;
+            vm.FormProduct = InvalidProduct;
             Assert.IsFalse(vm.CanSaveProduct());
         }
     }
