@@ -16,7 +16,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="600" Width="1050" MinWidth="850" MinHeight="600"
-        Title="Inventory Manager 1.0">
+        Title="Inventory Manager 1.0" Icon=".\im-logo.ico">
 
     <Window.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}" />

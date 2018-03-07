@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui", "Ui\Ui.csproj", "{87744B4B-7184-4DB1-8736-4DC30F7076F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory Manager", "Ui\Inventory Manager.csproj", "{87744B4B-7184-4DB1-8736-4DC30F7076F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".shared", ".shared", "{79CBD935-BDA2-4080-93A4-9A9FA931E6B2}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,6 +13,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{BB719440-EF51-411E-82CE-EE66F1E3D9EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicTests", "LogicTests\LogicTests.csproj", "{6FD7024E-DA32-4A1C-9B1B-B494FDCF93B9}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Inventory Manager Setup", "Inventory Manager Setup\Inventory Manager Setup.vdproj", "{60917A7F-0B01-4E28-BC87-B5F92FC70C3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,8 @@ Global
 		{6FD7024E-DA32-4A1C-9B1B-B494FDCF93B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FD7024E-DA32-4A1C-9B1B-B494FDCF93B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FD7024E-DA32-4A1C-9B1B-B494FDCF93B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60917A7F-0B01-4E28-BC87-B5F92FC70C3C}.Debug|Any CPU.ActiveCfg = Debug
+		{60917A7F-0B01-4E28-BC87-B5F92FC70C3C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
