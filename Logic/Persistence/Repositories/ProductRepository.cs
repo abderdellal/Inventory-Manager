@@ -37,7 +37,7 @@ namespace Logic.Persistence.Repositories
                     TotalSaleDay = g.Where(r => r.sale.date > minDateDay).Select(r => r.sale.amount).DefaultIfEmpty(0).Sum()
                 }).ToList();
             }
-            catch(Exception e)
+            catch
             {
                 return new List<ProductSalesInfo>();
             }

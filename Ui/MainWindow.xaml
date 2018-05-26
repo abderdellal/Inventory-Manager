@@ -91,14 +91,14 @@
                         <materialDesign:PackIcon Kind="HomeModern"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="{StaticResource About}" Command="{Binding changeViewCommand}" CommandParameter="{Binding About, Source={StaticResource Locator}}">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Copyright"/>
-                    </MenuItem.Icon>
-                </MenuItem>
                 <MenuItem Header="{StaticResource Settings}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Settings, Source={StaticResource Locator}}">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="Settings"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource About}" Command="{Binding changeViewCommand}" CommandParameter="{Binding About, Source={StaticResource Locator}}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Copyright"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

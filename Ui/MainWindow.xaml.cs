@@ -12,8 +12,6 @@ namespace Ui
     {
         public MainWindow()
         {
-            AppDomain.CurrentDomain.SetData("DataDirectory",
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
             InitializeComponent();
         }
     }

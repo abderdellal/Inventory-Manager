@@ -290,9 +290,6 @@
     <Content Include="im-logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="InventoryManager.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\im-logo.png" />
   </ItemGroup>
   <ItemGroup>
